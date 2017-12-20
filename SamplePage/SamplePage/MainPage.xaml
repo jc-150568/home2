@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SamplePage"
+             x:Class="SamplePage.MainPage">
+
+
+    <NavigationPage Title="カメラ" Icon="iconmonstr-photo-camera-4-24.png">
+        <x:Arguments>
+            <local:CameraPage />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="本棚" Icon="iconmonstr-bookmark-1-24.png">
+        <x:Arguments>
+            <local:BookPage />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="さがす" Icon="iconmonstr-star-2-32.png">
+        <x:Arguments>
+            <local:SeekPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="設定" Icon="iconmonstr-gear-1-24.png">
+        <x:Arguments>
+            <local:PropertyPage />
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

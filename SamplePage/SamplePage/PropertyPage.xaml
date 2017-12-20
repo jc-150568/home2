@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplePage.PropertyPage"
+             Title="設定">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Data">
+                <TableView.Root>
+                    <TableRoot>
+                        <TableSection>
+                            <TextCell Text="一般" Tapped="Common" />
+                            <TextCell Text="バックアップ復元" Tapped="Backup" />
+                            <TextCell Text="ヘルプ" Tapped="Help" />
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

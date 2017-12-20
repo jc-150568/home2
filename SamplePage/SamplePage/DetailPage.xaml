@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplePage.DetailPage">
+    <ContentPage.Content>
+
+        <!-- レイアウトを座標で表示 -->
+        <AbsoluteLayout>
+
+            <!-- レイアウトを垂直方向に表示 -->
+            <StackLayout>
+
+                <!-- 本のタイトルを表示 -->
+                <Label Text="基礎から学ぶXamarinプログラミング" Margin="30" FontSize="30" x:Name="Name"/>
+
+                <!-- 横線を表示 -->
+                <BoxView Color="Gray" WidthRequest="1000" HeightRequest="1" />
+
+                <!-- 空白 -->
+                <BoxView Color="White" WidthRequest="500" HeightRequest="350" />
+
+                <!-- 本のデータ -->
+                <Label Text="基礎データ" Margin="15" FontSize="20"/>
+                <Label Text="タイプ" />
+                <Label Text="発売日" />
+                <Label Text="出版社" />
+                <Label Text="カテゴリ" />
+
+            </StackLayout>
+
+            <!-- 本の画像を表示 -->
+            <BoxView Color="Blue" AbsoluteLayout.LayoutBounds=".1,.25,130,180" AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- 読みたいボタンを表示 -->
+            <Button x:Name="image1" Image="gray_book_72.png" Clicked="OnImageClicked1" AbsoluteLayout.LayoutBounds=".4,.2,32,32" AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- お気に入りボタンを表示 -->
+            <Button x:Name="image2" Image="gray_star_72.png" Clicked="OnImageClicked2" AbsoluteLayout.LayoutBounds=".3,.2,32,32" AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+            <!-- 未読・既読スイッチを表示 -->
+            <Switch x:Name="unread1" Toggled="OnToggled"  AbsoluteLayout.LayoutBounds=".5,.3,32,32" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Label x:Name="unread2" Text="未読" AbsoluteLayout.LayoutBounds=".515,.35,32,32" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+            <!-- 本の評価を表示 -->
+            <Image Source="star_test.gif" AbsoluteLayout.LayoutBounds=".32,.25,120,120" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+            <!-- 横線を表示 -->
+            <BoxView Color="Black" AbsoluteLayout.LayoutBounds=".5,.5,1000,2" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

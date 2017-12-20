@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplePage.CameraPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Image="SampleISBN.png"
+            Clicked="ScanButtonClicked"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand" />
+
+
+            <Label Text="TEST!"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               x:Name="LOL"/>
+
+            <Button Text="select!"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    x:Name="select"
+                    Clicked="SelectClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
