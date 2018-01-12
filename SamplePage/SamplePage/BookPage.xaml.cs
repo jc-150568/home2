@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BookManager
+namespace SamplePage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BookPage : ContentPage
