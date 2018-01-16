@@ -15,11 +15,11 @@
                VerticalOptions="CenterAndExpand"
                x:Name="LOL"/>
 
-           <!-- <Button Text="select!"
+            <Button Text="select!"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     x:Name="select"
-                    Clicked="SelectClicked"/>-->
+                    Clicked="SelectClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

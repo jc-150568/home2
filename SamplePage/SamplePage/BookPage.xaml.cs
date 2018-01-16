@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -121,7 +121,7 @@ namespace SamplePage
 
             }*/
 
-            BookListView.ItemsSource = items;
+           /* BookListView.ItemsSource = items;
 
         }
 
@@ -148,7 +148,8 @@ namespace SamplePage
             String x = new BookPage().BookListView.SelectedItem.ToString();
             Navigation.PushAsync(new DetailPage(x));
         }*/
-
+        /*
 
     }
 }
+*/
