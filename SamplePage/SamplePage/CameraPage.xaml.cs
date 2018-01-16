@@ -231,7 +231,22 @@ namespace SamplePage
 
         void SelectClicked(object sender, EventArgs e)
         {
-            UserModel.deleteUser();
+            //Userテーブルの行データを取得
+            var query = UserModel.selectUser(); //中身はSELECT * FROM [User]
+            var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
+            foreach (var user in query)
+            {
+
+                //Userテーブルの名前列をLabelに書き出す
+                layout.Children.Add(new Label { Text = user.ISBN});
+                layout.Children.Add(new Label { Text = user.Title });
+                layout.Children.Add(new Label { Text = user.TitleKana });
+                layout.Children.Add(new Label { Text = user.ItemCaption });
+                //layout.Children.Add(new Label { Text = user.No.ToString() });
+                // LOL.Text = user.Name;
+
+            }
+            Content = layout;
         }
 
     }
