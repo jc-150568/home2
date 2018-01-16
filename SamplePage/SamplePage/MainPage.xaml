@@ -11,11 +11,11 @@
         </x:Arguments>
     </NavigationPage>
 
-    <!--<NavigationPage Title="本棚" Icon="iconmonstr-bookmark-1-24.png">
+    <NavigationPage Title="本棚" Icon="iconmonstr-bookmark-1-24.png">
         <x:Arguments>
             <local:BookPage />
         </x:Arguments>
-    </NavigationPage>-->
+    </NavigationPage>
 
     <NavigationPage Title="さがす" Icon="iconmonstr-star-2-32.png">
         <x:Arguments>
