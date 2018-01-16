@@ -131,49 +131,21 @@ namespace SamplePage
     public class UserModel
     {
         //プライマリキー　自動採番されます
-        [PrimaryKey, AutoIncrement, Column("_id")]
+        [PrimaryKey]
         //カラムっていうのは列と同じ
         //idカラム
-        public int Id { get; set; }
+        public string ISBN { get; set; }
         //名前カラム
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public int No { get; set; }
+        public string TitleKana { get; set; }
 
+        public string ItemCaption { get; set; }
         //Userテーブルに行追加するメソッドです
         //------------------------Insert文的なの--------------------------
-        public static void insertUser(string name)
-        {
-
-            //データベースに接続
-            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
-            {
-
-                try
-                {
-
-
-                    //データベースにUserテーブルを作成します
-                    db.CreateTable<UserModel>();
-
-                    //Userテーブルに行追加します
-                    db.Insert(new UserModel() { Name = name });
-
-                    db.Commit();
-
-                }
-                catch (Exception e)
-                {
-
-                    db.Rollback();
-                    System.Diagnostics.Debug.WriteLine(e);
-
-                }
-            }
-        }
-
+       
         //id name オーバーロード
-        public static void insertUser(int id, string name)
+        public static void insertUser(string isbn,string title, string titlekana,string itemcaption)
         {
             //データベースに接続する
             using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
@@ -183,7 +155,7 @@ namespace SamplePage
                     //データベースにUserテーブルを作成する
                     db.CreateTable<UserModel>();
 
-                    db.Insert(new UserModel() { Id = id, Name = name });
+                    db.Insert(new UserModel() { ISBN = isbn, Title=title,TitleKana=titlekana,ItemCaption=itemcaption });
                     db.Commit();
                 }
                 catch (Exception e)
@@ -193,29 +165,6 @@ namespace SamplePage
                 }
             }
         }
-
-        //id name オーバーロード insert
-        public static void insertUser(int id, string name, int no)
-        {
-            //データベースに接続する
-            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
-            {
-                try
-                {
-                    //データベースにUserテーブルを作成する
-                    db.CreateTable<UserModel>();
-
-                    db.Insert(new UserModel() { Id = id, Name = name,No = no });
-                    db.Commit();
-                }
-                catch (Exception e)
-                {
-                    db.Rollback();
-                    System.Diagnostics.Debug.WriteLine(e);
-                }
-            }
-        }
-
 
         //Userテーブルのuserを削除するメソッド
         //--------------------------delete文的なの--------------------------

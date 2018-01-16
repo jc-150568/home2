@@ -194,27 +194,13 @@ namespace SamplePage
                         JValue gazoValue = (JValue)jobj["largeImageUrl"];
                         string gazo = (string)gazoValue.Value;
 
-                        //書き出し
-                        layout.Children.Add(new Label { Text = $"title: { title }" });
-                        layout.Children.Add(new Label { Text = $"titleKana: { titleKana }" });
-                        layout.Children.Add(new Label { Text = $"itemCaption: { itemCaption }" });
-                        layout.Children.Add(new Image { Source = gazo });
-                        String A = gazo;
+                        UserModel.insertUser(isbncode, title, titleKana, itemCaption);
                     };
 
-                    layout.Children.Add(new Label { Text = "読み取り終了", TextColor = Color.Black });
-
-
-                    layout.Children.Add(new Label { Text = "" });//改行
-
-                    layout.Children.Add(new Label { Text = "JSON形式で書き出す", TextColor = Color.Red });
-
-                    layout.Children.Add(new Label { Text = json.ToString() });
-
-
+                   
 
                 };
-                Content = layout2;
+                
             }
             catch (Exception e)
             {
