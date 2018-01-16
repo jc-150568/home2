@@ -62,8 +62,8 @@ namespace SamplePage
 
         void SelectClicked(object sender, EventArgs e)
         {
-           
-            
+
+            /*
             //Userテーブルの行データを取得
             var query = UserModel.selectUser(); //中身はSELECT * FROM [User]
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
@@ -77,7 +77,9 @@ namespace SamplePage
               // LOL.Text = user.Name;
 
             }
-           Content = layout;
+           Content = layout;*/
+
+            UserModel.deleteUser();
         }
     }
 }
