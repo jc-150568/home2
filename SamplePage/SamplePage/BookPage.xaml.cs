@@ -35,14 +35,6 @@ namespace SamplePage
 
             }
 
-            for (var j = 1; j == query.Count; j++)
-            {
-                foreach (var user in UserModel.countUser(j))
-                {
-                    items.Add(new Book { Name = user.Title, Value = 2.5 });
-
-                }
-            }
         }
     }
 
