@@ -243,5 +243,10 @@ namespace SamplePage
                 }
         }
 
+        void SelectClicked(object sender, EventArgs e)
+        {
+            UserModel.deleteUser();
+        }
+
     }
 }
