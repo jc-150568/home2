@@ -27,7 +27,7 @@ namespace SamplePage
             //*をリストにぶち込んで個数分addするのでもいいのでは
             foreach (var user in query)
             {
-                List1.Add(user.Name);
+                List1.Add(user.Title);
             }
             for (var j = 0; j < query.Count; j++)
             {
