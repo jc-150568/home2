@@ -128,11 +128,11 @@ namespace SamplePage
             public string BlueBook2 { get; set; }
 
         }
-        /*private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             String x = new BookPage().BookListView.SelectedItem.ToString();
             Navigation.PushAsync(new DetailPage(x));
-        }*/
+        }
 
 
     }
