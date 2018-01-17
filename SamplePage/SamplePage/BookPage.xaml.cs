@@ -130,7 +130,7 @@ namespace SamplePage
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            String x = new BookPage().BookListView.SelectedItem.ToString();
+            String x = new Book().Name.ToString();
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
             layout.Children.Add(new Label { Text = x });
             //Navigation.PushAsync(new DetailPage(x));
