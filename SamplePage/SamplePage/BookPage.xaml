@@ -6,7 +6,8 @@
     <ContentPage.Content>
         <ListView x:Name="BookListView" RowHeight="100"
                    IsPullToRefreshEnabled="True"
-                   Refreshing="OnRefreshing" >
+                   Refreshing="OnRefreshing" 
+                  ItemTapped="OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
 

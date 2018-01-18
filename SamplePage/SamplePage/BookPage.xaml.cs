@@ -15,11 +15,10 @@ namespace SamplePage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BookPage : ContentPage
     {
-        int j = 1;
+        
         public BookPage()
         {
             InitializeComponent();
-            var query = UserModel.countUser(j);
 
             var query2 = UserModel.selectUser();
             ObservableCollection<Book> items = new ObservableCollection<Book>();
@@ -146,6 +145,8 @@ namespace SamplePage
         {
             //2秒処理を待つ
             await Task.Delay(2000);
+
+            BookPage();
 
             //リフレッシュを止める
             this.listView.IsRefreshing = false;
