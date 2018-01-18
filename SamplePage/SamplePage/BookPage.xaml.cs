@@ -146,7 +146,19 @@ namespace SamplePage
             //2秒処理を待つ
             await Task.Delay(2000);
 
-            BookPage();
+            var query2 = UserModel.selectUser();
+            ObservableCollection<Book> items = new ObservableCollection<Book>();
+            var List1 = new List<String>();
+            //*をリストにぶち込んで個数分addするのでもいいのでは
+            foreach (var user in query2)
+            {
+                List1.Add(user.Title);
+            }
+            for (var j = 0; j < query2.Count; j++)
+            {
+                items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
+
+            }
 
             //リフレッシュを止める
             this.listView.IsRefreshing = false;
