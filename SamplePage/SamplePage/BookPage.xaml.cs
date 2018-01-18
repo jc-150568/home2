@@ -161,7 +161,7 @@ namespace SamplePage
             }
 
             //リフレッシュを止める
-            this.listView.IsRefreshing = false;
+            this.BookListView.IsRefreshing = false;
         }
 
 
