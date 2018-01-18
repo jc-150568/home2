@@ -15,13 +15,13 @@ namespace SamplePage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BookPage : ContentPage
     {
-        
+        public ObservableCollection<Book> items = new ObservableCollection<Book>();
         public BookPage()
         {
             InitializeComponent();
 
             var query = UserModel.selectUser();
-            ObservableCollection<Book> items = new ObservableCollection<Book>();
+            
             var List1 = new List<String>();
             //*をリストにぶち込んで個数分addするのでもいいのでは
             foreach (var user in query)
