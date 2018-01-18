@@ -4,7 +4,9 @@
              x:Class="SamplePage.BookPage"
              Title="本棚">
     <ContentPage.Content>
-        <ListView x:Name="BookListView" RowHeight="100" ItemSelected="OnItemSelected">
+        <ListView x:Name="BookListView" RowHeight="100"
+                   IsPullToRefreshEnabled="True"
+                   Refreshing="OnRefreshing" >
             <ListView.ItemTemplate>
                 <DataTemplate>
 

@@ -130,11 +130,25 @@ namespace SamplePage
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            String x = new Book().Name.ToString();
+            string x = new BookPage().BookListView.SelectedItem.ToString();
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
             layout.Children.Add(new Label { Text = x });
             //Navigation.PushAsync(new DetailPage(x));
             Content = layout;
+        }
+
+        /// <summary>
+        /// リフレッシュ時に呼ばれる
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void OnRefreshing(object sender, EventArgs e)
+        {
+            //2秒処理を待つ
+            await Task.Delay(2000);
+
+            //リフレッシュを止める
+            this.listView.IsRefreshing = false;
         }
 
 
