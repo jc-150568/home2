@@ -29,4 +29,10 @@
         </x:Arguments>
     </NavigationPage>
 
+    <NavigationPage Title="ランキング" Icon="iconmonstr-star-2-32.png">
+        <x:Arguments>
+            <local:ranktest/>
+        </x:Arguments>
+    </NavigationPage>
+
 </TabbedPage>
