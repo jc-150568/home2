@@ -20,19 +20,28 @@ namespace SamplePage
         {
             InitializeComponent();
 
-            var query = UserModel.selectUser();
-            
-            var List1 = new List<String>();
-            //*をリストにぶち込んで個数分addするのでもいいのでは
-            foreach (var user in query)
+            if (UserModel.selectUser() != null)
             {
-                List1.Add(user.Title);
-            }
-            for (var j = 0; j < query.Count; j++)
-            {
-                items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
+                var query = UserModel.selectUser();
+                ObservableCollection<Book> items = new ObservableCollection<Book>();
+                var List1 = new List<String>();
+                //*をリストにぶち込んで個数分addするのでもいいのでは
+                foreach (var user in query)
+                {
+                    List1.Add(user.Title);
+                }
+                for (var j = 0; j < query.Count; j++)
+                {
+                    items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
 
+                }
             }
+            else
+            {
+                items.Add(new Book { Name = "空やで" });
+            }
+
+           
 
             /*for (var j = 1; j == query2.Count; j++)
             {                
@@ -129,7 +138,7 @@ namespace SamplePage
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            string x = new BookPage().BookListView.SelectedItem.ToString();
+            string x = new BookPage().BookListView.ItemsSource.ToString();
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
             layout.Children.Add(new Label { Text = x });
             //Navigation.PushAsync(new DetailPage(x));
@@ -150,7 +159,6 @@ namespace SamplePage
             if (UserModel.selectUser() != null)
             {
                 var query = UserModel.selectUser();
-                ObservableCollection<Book> items = new ObservableCollection<Book>();
                 var List1 = new List<String>();
                 //*をリストにぶち込んで個数分addするのでもいいのでは
                 foreach (var user in query)
