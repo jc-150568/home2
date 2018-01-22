@@ -2,12 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamplePage.SeekPage"
-             Title="楽天で探す">
+             Title="探す">
     <ContentPage.Content>
+
+        <!-- レイアウトを垂直に表示 -->
         <StackLayout>
-            <Label Text="ICQ"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text=""></Label>
+            <!-- 検索するバーを表示-->
+            <SearchBar Placeholder = "Search"
+                       PlaceholderColor="Gray"/>
+
+            <!-- 親カテゴリを指定するプルダウンを表示 -->
+            <Picker Title="親カテゴリ"
+                        WidthRequest="240" 
+                        SelectedIndexChanged="OnSelectedIndexChanged" x:Name="picker2">
+                <Picker.Items>
+
+                    <x:String>漫画(コミック)</x:String>
+                    <x:String>語学・学習参考書</x:String>
+                    <x:String>絵本・児童書・図鑑</x:String>
+                    <x:String>小説・エッセイ</x:String>
+                    <x:String>パソコン・システム開発</x:String>
+                    <x:String>ビジネス・経済・就職</x:String>
+                    <x:String>旅行・留学・アウトドア</x:String>
+                    <x:String>人文・思想・社会</x:String>
+                    <x:String>ホビー・スポーツ・美術</x:String>
+                    <x:String>美容・暮らし・健康・管理</x:String>
+                    <x:String>エンタメ・ゲーム</x:String>
+                    <x:String>科学・技術</x:String>
+                    <x:String>写真集・タレント</x:String>
+                    <x:String>資格・検定</x:String>
+                    <x:String>ライトノベル</x:String>
+                    <x:String>ボーイズラブ(BL)</x:String>
+                    <x:String>医学・薬学・看護学・歯科学</x:String>
+
+                </Picker.Items>
+            </Picker>
+
+            <!-- 子カテゴリを指定するプルダウンを表示 -->
+            <Picker Title="子カテゴリ" WidthRequest="240" x:Name="picker3">
+                <Picker.Items>
+                </Picker.Items>
+            </Picker>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
