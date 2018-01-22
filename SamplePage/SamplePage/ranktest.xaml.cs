@@ -16,7 +16,7 @@ using System.ComponentModel;
 
 namespace SamplePage
 {
-    public partial class MainPage : ContentPage
+    public partial class ranktest : ContentPage
     {
         private string url;
         static string requestUrl;
@@ -51,7 +51,7 @@ namespace SamplePage
         }
         */
 
-        public MainPage()
+        public ranktest()
         {
             InitializeComponent();
 
