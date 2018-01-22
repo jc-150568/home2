@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 using System.Security.Principal;
 using System.ComponentModel;
 
-namespace Ranking
+namespace SamplePage
 {
     public partial class MainPage : ContentPage
     {
