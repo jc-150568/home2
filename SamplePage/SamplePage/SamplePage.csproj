@@ -63,6 +63,9 @@
     <Compile Include="PropertyPage.xaml.cs">
       <DependentUpon>PropertyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ranktest.xaml.cs">
+      <DependentUpon>ranktest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SeekPage.xaml.cs">
       <DependentUpon>SeekPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BookPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ranktest.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
