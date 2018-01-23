@@ -24,7 +24,7 @@ namespace SamplePage
             {
                 var query = UserModel.selectUser();
                 //var List1 = new List<String>();
-                List<Book1> List1;
+                List<Book> List1;
                 //*をリストにぶち込んで個数分addするのでもいいのでは
                 foreach (var user in query)
                 {
@@ -138,7 +138,7 @@ namespace SamplePage
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Book1 List1 = (Book1)BookListView.SelectedItem;
+            Book List1 = (Book)BookListView.SelectedItem;
             String x = List1.Title;
             Navigation.PushAsync(new DetailPage(x));
 
