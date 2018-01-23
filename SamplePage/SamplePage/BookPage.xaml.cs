@@ -135,7 +135,7 @@ namespace SamplePage
             public string BlueBook2 { get; set; }
 
         }
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnItemSelected(object sender, EventArgs e)
         {
 
             string x = BookListView.SelectedItem.ToString();
