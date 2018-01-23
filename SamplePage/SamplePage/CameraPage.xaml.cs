@@ -194,7 +194,13 @@ namespace SamplePage
                         JValue gazoValue = (JValue)jobj["largeImageUrl"];
                         string gazo = (string)gazoValue.Value;
 
-                        UserModel.insertUser(isbncode, title, titleKana, itemCaption);
+                        bool x = await DisplayAlert("この内容で登録してよろしいですか？", "タイトル:" + title + "\r\n著者:" + author, "OK", "CANCEL");
+                        if (x == true)
+                        {
+                            UserModel.insertUser(isbncode, title, titleKana, itemCaption);
+                        }
+
+                        
                     };
 
                    

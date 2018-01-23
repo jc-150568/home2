@@ -59,8 +59,8 @@
                                 <!-- 読みたいボタンを表示 -->
                                 <Image Source="{Binding BlueBook2}" Grid.Row="2" Grid.Column="2"/>
                                 <!-- 本の評価を表示-->
-                                <Label Text="{Binding Value}" FontSize="15" HorizontalOptions="Center"  Grid.Row="1" Grid.Column="3"/>
-                                <Image Source="{Binding ValueImage}" Grid.Row="2" Grid.Column="3"/>
+                                <!--<Label Text="{Binding Value}" FontSize="15" HorizontalOptions="Center"  Grid.Row="1" Grid.Column="3"/>
+                                <Image Source="{Binding ValueImage}" Grid.Row="2" Grid.Column="3"/>-->
 
                             </Grid>
                         </StackLayout>
