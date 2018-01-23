@@ -16,7 +16,7 @@ namespace SamplePage
     public partial class BookPage : ContentPage
     {
         public ObservableCollection<Book> items = new ObservableCollection<Book>();
-        var List1 = new List<String>();
+        public List<string> List1;
         public BookPage()
         {
             InitializeComponent();
