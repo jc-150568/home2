@@ -16,7 +16,9 @@ using Newtonsoft.Json.Linq;
 
 using System.Security.Principal;
 using System.ComponentModel;
-
+/*
+ 最初からランキング表示してピッカー変えたら更新かけるプログラムを組む
+     */
 namespace SamplePage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
