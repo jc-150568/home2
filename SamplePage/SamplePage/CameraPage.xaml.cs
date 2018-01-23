@@ -188,6 +188,9 @@ namespace SamplePage
                         JValue titleKanaValue = (JValue)jobj["titleKana"];
                         string titleKana = (string)titleKanaValue.Value;
 
+                        JValue authorValue = (JValue)jobj["author"];
+                        string author = (string)author.Value;
+
                         JValue itemCaptionValue = (JValue)jobj["itemCaption"];
                         string itemCaption = (string)itemCaptionValue.Value;
 
