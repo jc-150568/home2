@@ -157,11 +157,11 @@ namespace SamplePage
             //2秒処理を待つ
             await Task.Delay(2000);
             items.Clear();
+            List1.Clear();
 
             if (UserModel.selectUser() != null)
             {
                 var query = UserModel.selectUser();
-                var List1 = new List<String>();
                 //*をリストにぶち込んで個数分addするのでもいいのでは
                 foreach (var user in query)
                 {
