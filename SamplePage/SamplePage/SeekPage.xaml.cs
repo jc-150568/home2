@@ -44,7 +44,7 @@ namespace SamplePage
                     picker3.Items.Add("少女");
                     picker3.Items.Add("青年");
                     picker3.Items.Add("レディース");
-                    Serch(001);
+                    Serch("001");
                 }
 
                 if (this.picker2.SelectedIndex == 1)
