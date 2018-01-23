@@ -31,7 +31,8 @@ namespace SamplePage
                 }
                 for (var j = 0; j < query.Count; j++)
                 {
-                    items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
+                    //items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
+                    items.Add(List1[j]);
 
                 }
             }
