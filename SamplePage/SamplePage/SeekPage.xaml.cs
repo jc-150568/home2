@@ -12,6 +12,8 @@ namespace SamplePage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SeekPage : ContentPage
     {
+        private string url;
+        static string requestUrl;
         public SeekPage()
         {
             InitializeComponent();
