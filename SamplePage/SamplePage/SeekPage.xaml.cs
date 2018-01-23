@@ -44,7 +44,7 @@ namespace SamplePage
                     picker3.Items.Add("少女");
                     picker3.Items.Add("青年");
                     picker3.Items.Add("レディース");
-                    Serch(picker2.SelectedIndex);
+                    Serch(001);
                 }
 
                 if (this.picker2.SelectedIndex == 1)
@@ -106,7 +106,7 @@ namespace SamplePage
         }
 
         //--------------------------------Serchボタンイベントハンドラ-----------------------------------
-        private async void Serch(int genreid)
+        private async void Serch(string genreid)
         {
             try
             {
