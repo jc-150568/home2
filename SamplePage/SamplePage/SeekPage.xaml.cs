@@ -106,7 +106,7 @@ namespace SamplePage
         }
 
         //--------------------------------Serchボタンイベントハンドラ-----------------------------------
-        private async void Serch(int x)
+        private async void Serch(int genreid)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace SamplePage
                 layout2.Children.Add(scroll);
                 var layout = new StackLayout { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand };
                 scroll.Content = layout;
-                requestUrl = url + "&booksGenreId=001" + x; //URLにISBNコードを挿入
+                requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
 
                 //HTTPアクセスメソッドを呼び出す
                 string APIdata = await GetApiAsync(); //jsonをstringで受け取る
