@@ -186,11 +186,5 @@ namespace SamplePage
                     return null;
                 }
         }
-        //UTF-8エンコードメソッド ------------------>しなくていい
-        public MemoryStream GetMemoryStream(string text)
-        {
-            string a = text;
-            return new MemoryStream(Encoding.UTF8.GetBytes(a));
-        }
     }
 }
