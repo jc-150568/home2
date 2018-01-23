@@ -115,8 +115,6 @@ namespace SamplePage
                 layout2.Children.Add(scroll);
                 var layout = new StackLayout { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand };
                 scroll.Content = layout;
-
-                string genreId = x;
                 requestUrl = url + "&booksGenreId=001" + x; //URLにISBNコードを挿入
 
                 //HTTPアクセスメソッドを呼び出す
