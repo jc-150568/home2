@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+
+using System.Security.Principal;
+using System.ComponentModel;
 
 namespace SamplePage
 {
