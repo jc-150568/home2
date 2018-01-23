@@ -31,8 +31,7 @@ namespace SamplePage
                 }
                 for (var j = 0; j < query.Count; j++)
                 {
-                    //items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
-                    items.Add(List1[j]);
+                    items.Add(new Book { Name = List1[j], /*Value = 2.5*/ });
 
                 }
             }
@@ -139,7 +138,7 @@ namespace SamplePage
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
-            string x = "エッッッッ";
+            string x = items.ToString();
             Navigation.PushAsync(new DetailPage(x));
             /*string x = new BookPage().BookListView.ItemsSource.ToString();
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
