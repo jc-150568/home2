@@ -16,6 +16,7 @@ namespace SamplePage
     public partial class BookPage : ContentPage
     {
         public ObservableCollection<Book> items = new ObservableCollection<Book>();
+        var List1 = new List<String>();
         public BookPage()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace SamplePage
             if (UserModel.selectUser() != null)
             {
                 var query = UserModel.selectUser();
-                var List1 = new List<String>();
+                
                 //*をリストにぶち込んで個数分addするのでもいいのでは
                 foreach (var user in query)
                 {
@@ -137,8 +138,8 @@ namespace SamplePage
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            
-            string x = BookListView.SelectedItem.ToString();
+
+            string x = List1.ToString();
             Navigation.PushAsync(new DetailPage(x));
             /*string x = new BookPage().BookListView.ItemsSource.ToString();
             var layout = new StackLayout { HorizontalOptions = LayoutOptions.Center, Margin = new Thickness { Top = 100 } };
