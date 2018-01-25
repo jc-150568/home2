@@ -52,6 +52,63 @@
             <Button Text="更新"
                     Clicked="Serch"
                     />
+            <ListView x:Name="RankListView" RowHeight="100"
+                   IsPullToRefreshEnabled="True"
+                   Refreshing="OnRefreshing" 
+                  ItemTapped="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <!-- セルをカスタマイズ-->
+                        <ViewCell>
+
+                            <!-- レイアウトを水平方向に表示-->
+                            <StackLayout Orientation="Horizontal">
+
+                                <!-- セルを格子状にする-->
+                                <Grid>
+
+                                    <!-- 3行にして高さを設定 -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="33" />
+                                        <RowDefinition Height="34" />
+                                        <RowDefinition Height="33" />
+                                    </Grid.RowDefinitions>
+
+                                    <!-- 2列にして幅を設定 -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text= "{Binding Name}" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+                                </Grid>
+
+                                <!-- セルを格子状にする-->
+                                <Grid>
+
+                                    <!-- 4行にして高さを設定 -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                    </Grid.RowDefinitions>
+
+                                    <!-- 4行にして幅を設定 -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Value}" FontSize="15" HorizontalOptions="Center"  Grid.Row="1" Grid.Column="3"/>
+                                    <Image Source="{Binding ValueImage}" Grid.Row="2" Grid.Column="3"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
