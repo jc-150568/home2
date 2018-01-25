@@ -52,7 +52,7 @@ namespace SamplePage
             InitializeComponent();
 
             var ListTitle = new List<string>();
-            var ListReview = new List<string>();
+            var ListReview = new List<double>();
 
             //formatVersion=2にした
             url = "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&formatVersion=2&applicationId=1051637750796067320&sort=sales&hits=30";
@@ -60,12 +60,12 @@ namespace SamplePage
             requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
 
             //HTTPアクセスメソッドを呼び出す
-            string APIdata = await GetApiAsync(); //jsonをstringで受け取る
+            string APIdata = GetApiAsync(); //jsonをstringで受け取る
 
             //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
             if (APIdata is null)
             {
-                await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
+               DisplayAlert("接続エラー", "接続に失敗しました", "OK");
             }
 
             /*
@@ -91,7 +91,7 @@ namespace SamplePage
                 string title = (string)titleValue.Value;
 
                 JValue reviewAverageValue = (JValue)jobj["reviewAverage"];
-                string reviewAverage = (string)reviewAverage.Value;
+                double reviewAverage = (double)reviewAverageValue.Value;
 
                 JValue itemCaptionValue = (JValue)jobj["itemCaption"];
                 string itemCaption = (string)itemCaptionValue.Value;
@@ -109,7 +109,7 @@ namespace SamplePage
 
                
                 
-                for (var j = 0; j < query.Count; j++)
+                for (var j = 0; j <ListTitle.Count; j++)
                 {
                     items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
 
