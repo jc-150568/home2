@@ -11,7 +11,8 @@
             <Label Text=""></Label>
             <!-- 検索するバーを表示-->
             <SearchBar Placeholder = "Search"
-                       PlaceholderColor="Gray"/>
+                       PlaceholderColor="Gray"
+                       x:Name="Bar1"/>
 
             <!-- 親カテゴリを指定するプルダウンを表示 -->
             <Picker Title="親カテゴリ"
@@ -41,10 +42,16 @@
             </Picker>
 
             <!-- 子カテゴリを指定するプルダウンを表示 -->
-            <Picker Title="子カテゴリ" WidthRequest="240" x:Name="picker3">
+            <Picker Title="子カテゴリ"
+                    WidthRequest="240" 
+                    x:Name="picker3"
+                    SelectedIndexChanged="OnSelectedIndexChanged2">
                 <Picker.Items>
                 </Picker.Items>
             </Picker>
+            <Button Text="更新"
+                    Clicked="Serch"
+                    />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

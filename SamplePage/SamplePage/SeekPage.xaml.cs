@@ -17,7 +17,23 @@ using Newtonsoft.Json.Linq;
 using System.Security.Principal;
 using System.ComponentModel;
 /*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  最初からランキング表示してピッカー変えたら更新かけるプログラムを組む
+     * 
+     *  
+     * 
+     * 
+     *
+     *
+     * 
+     * 
      */
 namespace SamplePage
 {
@@ -26,6 +42,7 @@ namespace SamplePage
     {
         private string url;
         static string requestUrl;
+        static string genreid;
         public SeekPage()
         {
             InitializeComponent();
@@ -46,7 +63,7 @@ namespace SamplePage
                     picker3.Items.Add("少女");
                     picker3.Items.Add("青年");
                     picker3.Items.Add("レディース");
-                    Serch("001");
+                    genreid = "001";
                 }
 
                 if (this.picker2.SelectedIndex == 1)
@@ -57,6 +74,7 @@ namespace SamplePage
                     picker3.Items.Add("辞典");
                     picker3.Items.Add("語学関係資格");
                     picker3.Items.Add("学習参考書・問題書");
+                    genreid = "002";
                 }
 
                 if (this.picker2.SelectedIndex == 2)
@@ -68,6 +86,7 @@ namespace SamplePage
                     picker3.Items.Add("民話・昔話");
                     picker3.Items.Add("しかけ絵本");
                     picker3.Items.Add("図鑑・知識");
+                    genreid = "003";
                 }
 
 
@@ -80,6 +99,7 @@ namespace SamplePage
                     picker3.Items.Add("ノンフィクション");
                     picker3.Items.Add("日本の小説");
                     picker3.Items.Add("外国の小説");
+                    genreid = "004";
                 }
 
                 if (this.picker2.SelectedIndex == 4)
@@ -97,6 +117,7 @@ namespace SamplePage
                     picker3.Items.Add("MOUS・MOT");
                     picker3.Items.Add("パソコン検定");
                     picker3.Items.Add("IT・eコマース");
+                    genreid = "005";
                 }
 
 
@@ -106,9 +127,134 @@ namespace SamplePage
                 DisplayAlert("警告", e.ToString(), "OK");
             }
         }
+       
+        //21個
+        private void OnSelectedIndexChanged2(object sender, EventArgs eventArgs)
+        {
+            try
+            {
+
+                /*if (this.picker3.SelectedIndex == 0)
+                {
+                    genreid = genreid + "001";
+                }
+
+                if (this.picker3.SelectedIndex == 1)
+                {
+                    genreid = genreid + "002";
+                }
+
+                if (this.picker3.SelectedIndex == 2)
+                {
+                    genreid = genreid + "003";
+                }
+
+                if (this.picker3.SelectedIndex == 3)
+                {
+                    genreid = genreid + "004";
+                }
+
+                if (this.picker3.SelectedIndex == 4)
+                {
+                    genreid = genreid + "005";
+                }
+
+                if (this.picker3.SelectedIndex == 5)
+                {
+                    genreid = genreid + "006";
+                }
+
+                if (this.picker3.SelectedIndex == 6)
+                {
+                    genreid = genreid + "007";
+                }
+
+                if (this.picker3.SelectedIndex == 7)
+                {
+                    genreid = genreid + "008";
+                }
+
+                if (this.picker3.SelectedIndex == 8)
+                {
+                    genreid = genreid + "009";
+                }
+
+                if (this.picker3.SelectedIndex == 9)
+                {
+                    genreid = genreid + "010";
+                }
+                if (this.picker3.SelectedIndex == 10)
+                {
+                    genreid = genreid + "011";
+                }
+
+                if (this.picker3.SelectedIndex == 11)
+                {
+                    genreid = genreid + "012";
+                }
+                
+                if (this.picker3.SelectedIndex == 12)
+                {
+                    genreid = genreid + "013";
+                }
+
+                if (this.picker3.SelectedIndex == 13)
+                {
+                    genreid = genreid + "014";
+                }
+
+                if (this.picker3.SelectedIndex == 14)
+                {
+                    genreid = genreid + "015";
+                }
+
+                if (this.picker3.SelectedIndex == 15)
+                {
+                    genreid = genreid + "016";
+                }
+
+                if (this.picker3.SelectedIndex == 16)
+                {
+                    genreid = genreid + "017";
+                }
+
+                if (this.picker3.SelectedIndex == 17)
+                {
+                    genreid = genreid + "018";
+                }
+
+                if (this.picker3.SelectedIndex == 18)
+                {
+                    genreid = genreid + "019";
+                }
+
+                if (this.picker3.SelectedIndex == 19)
+                {
+                    genreid = genreid + "020";
+                }
+
+                if (this.picker3.SelectedIndex == 20)
+                {
+                    genreid = genreid + "021";
+                }*/
+                if (picker3.SelectedIndex < 9)
+                {
+                    genreid = genreid + "00" + (picker3.SelectedIndex + 1).ToString();
+                }
+                else
+                {
+                    genreid = genreid + "0" + (picker3.SelectedIndex + 1).ToString();
+                }
+
+            }
+            catch (Exception e)
+            {
+                DisplayAlert("警告", e.ToString(), "OK");
+            }
+        }
 
         //--------------------------------Serchボタンイベントハンドラ-----------------------------------
-        private async void Serch(string genreid)
+        private async void Serch(object sender, EventArgs e)
         {
             try
             {
