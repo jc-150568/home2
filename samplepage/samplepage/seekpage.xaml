@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplePage.SeekPage"
+             Title="探す">
+    <ContentPage.Content>
+
+        <!-- レイアウトを垂直に表示 -->
+        <StackLayout>
+
+            <Label Text=""></Label>
+            <!-- 検索するバーを表示-->
+            <SearchBar Placeholder = "Search"
+                       PlaceholderColor="Gray"
+                       x:Name="Bar1"/>
+
+            <!-- 親カテゴリを指定するプルダウンを表示 -->
+            <Picker Title="親カテゴリ"
+                        WidthRequest="240" 
+                        SelectedIndexChanged="OnSelectedIndexChanged" x:Name="picker2">
+                <Picker.Items>
+
+                    <x:String>漫画(コミック)</x:String>
+                    <x:String>語学・学習参考書</x:String>
+                    <x:String>絵本・児童書・図鑑</x:String>
+                    <x:String>小説・エッセイ</x:String>
+                    <x:String>パソコン・システム開発</x:String>
+                    <x:String>ビジネス・経済・就職</x:String>
+                    <x:String>旅行・留学・アウトドア</x:String>
+                    <x:String>人文・思想・社会</x:String>
+                    <x:String>ホビー・スポーツ・美術</x:String>
+                    <x:String>美容・暮らし・健康・管理</x:String>
+                    <x:String>エンタメ・ゲーム</x:String>
+                    <x:String>科学・技術</x:String>
+                    <x:String>写真集・タレント</x:String>
+                    <x:String>資格・検定</x:String>
+                    <x:String>ライトノベル</x:String>
+                    <x:String>ボーイズラブ(BL)</x:String>
+                    <x:String>医学・薬学・看護学・歯科学</x:String>
+
+                </Picker.Items>
+            </Picker>
+
+            <!-- 子カテゴリを指定するプルダウンを表示 -->
+            <Picker Title="子カテゴリ"
+                    WidthRequest="240" 
+                    x:Name="picker3"
+                    SelectedIndexChanged="OnSelectedIndexChanged2">
+                <Picker.Items>
+                </Picker.Items>
+            </Picker>
+            <Button Text="更新"
+                    Clicked="Serch"
+                    />
+            <ListView x:Name="RankListView" RowHeight="100"
+                      IsPullToRefreshEnabled="True"
+                      Refreshing="OnRefreshing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <!-- セルをカスタマイズ-->
+                        <ViewCell>
+
+                            <!-- レイアウトを水平方向に表示-->
+                            <StackLayout Orientation="Horizontal">
+
+                                <!-- セルを格子状にする-->
+                                <Grid>
+
+                                    <!-- 3行にして高さを設定 -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="33" />
+                                        <RowDefinition Height="34" />
+                                        <RowDefinition Height="33" />
+                                    </Grid.RowDefinitions>
+
+                                    <!-- 2列にして幅を設定 -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text= "{Binding Name}" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+                                </Grid>
+
+                                <!-- セルを格子状にする-->
+                                <Grid>
+
+                                    <!-- 4行にして高さを設定 -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                    </Grid.RowDefinitions>
+
+                                    <!-- 4行にして幅を設定 -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Value}" FontSize="15" HorizontalOptions="Center"  Grid.Row="1" Grid.Column="3"/>
+                                    <Image Source="{Binding ValueImage}" Grid.Row="2" Grid.Column="3"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
