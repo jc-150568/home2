@@ -49,137 +49,144 @@ namespace SamplePage
 
         public SeekPage()
         {
+           
             InitializeComponent();
-
-            var ListTitle = new List<string>();
-            var ListReview = new List<double>();
-
-            //formatVersion=2にした
-            url = "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&formatVersion=2&applicationId=1051637750796067320&sort=sales&hits=30";
-
-            requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
-
-            //HTTPアクセスメソッドを呼び出す
-            string APIdata = GetApiAsync().ToString(); //jsonをstringで受け取る
-
-            //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
-            if (APIdata is null)
+            try
             {
-               DisplayAlert("接続エラー", "接続に失敗しました", "OK");
-            }
+                var ListTitle = new List<string>();
+                var ListReview = new List<double>();
 
-            /*
-            //レスポンス(JSON)をstringに変換-------------->しなくていい
-            Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
-            StreamReader sr = new StreamReader(s);
-            string json = sr.ReadToEnd();
-            */
-            /*
-            //デシリアライズ------------------>しなくていい
-            var rakutenBooks = JsonConvert.DeserializeObject<RakutenBooks>(json.ToString());
-            */
+                //formatVersion=2にした
+                url = "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&formatVersion=2&applicationId=1051637750796067320&sort=sales&hits=30";
 
-            //パースする *重要*   パースとは、文法に従って分析する、品詞を記述する、構文解析する、などの意味を持つ英単語。
-            var json = JObject.Parse(APIdata); //stringのAPIdataをJObjectにパース
-            var Items = JArray.Parse(json["Items"].ToString()); //Itemsは配列なのでJArrayにパース
+                requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
 
-            //結果を出力
-            foreach (JObject jobj in Items)
-            {
-                //↓のように取り出す
-                JValue titleValue = (JValue)jobj["title"];
-                string title = (string)titleValue.Value;
+                //HTTPアクセスメソッドを呼び出す
+                string APIdata = GetApiAsync().ToString(); //jsonをstringで受け取る
 
-                JValue reviewAverageValue = (JValue)jobj["reviewAverage"];
-                double reviewAverage = (double)reviewAverageValue.Value;
+                //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
+                if (APIdata is null)
+                {
+                    DisplayAlert("接続エラー", "接続に失敗しました", "OK");
+                }
 
-                JValue itemCaptionValue = (JValue)jobj["itemCaption"];
-                string itemCaption = (string)itemCaptionValue.Value;
+                /*
+                //レスポンス(JSON)をstringに変換-------------->しなくていい
+                Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
+                StreamReader sr = new StreamReader(s);
+                string json = sr.ReadToEnd();
+                */
+                /*
+                //デシリアライズ------------------>しなくていい
+                var rakutenBooks = JsonConvert.DeserializeObject<RakutenBooks>(json.ToString());
+                */
 
-                JValue gazoValue = (JValue)jobj["largeImageUrl"];
-                string gazo = (string)gazoValue.Value;
+                //パースする *重要*   パースとは、文法に従って分析する、品詞を記述する、構文解析する、などの意味を持つ英単語。
+                var json = JObject.Parse(APIdata); //stringのAPIdataをJObjectにパース
+                var Items = JArray.Parse(json["Items"].ToString()); //Itemsは配列なのでJArrayにパース
 
-               
+                //結果を出力
+                foreach (JObject jobj in Items)
+                {
+                    //↓のように取り出す
+                    JValue titleValue = (JValue)jobj["title"];
+                    string title = (string)titleValue.Value;
 
-                ListTitle.Add(title);
-                ListReview.Add(reviewAverage);
+                    JValue reviewAverageValue = (JValue)jobj["reviewAverage"];
+                    double reviewAverage = (double)reviewAverageValue.Value;
 
-            };
+                    JValue itemCaptionValue = (JValue)jobj["itemCaption"];
+                    string itemCaption = (string)itemCaptionValue.Value;
+
+                    JValue gazoValue = (JValue)jobj["largeImageUrl"];
+                    string gazo = (string)gazoValue.Value;
 
 
-               
-                
-                for (var j = 0; j <ListTitle.Count; j++)
+
+                    ListTitle.Add(title);
+                    ListReview.Add(reviewAverage);
+
+                };
+
+
+
+
+                for (var j = 0; j < ListTitle.Count; j++)
                 {
                     items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
 
                 }
-           
-            /*for (var j = 1; j == query2.Count; j++)
-            {                
-                foreach (var user in UserModel.countUser(j))
-                {
-                   items.Add(new Book { Name = user.Name, Value = 2.5 });
-                }
-            }*/
 
-            /*foreach (var user in query2)
-            {
-                List1[0] = user.Name;
-            }List1.Add = List1[0];*/
+                /*for (var j = 1; j == query2.Count; j++)
+                {                
+                    foreach (var user in UserModel.countUser(j))
+                    {
+                       items.Add(new Book { Name = user.Name, Value = 2.5 });
+                    }
+                }*/
+
+                /*foreach (var user in query2)
+                {
+                    List1[0] = user.Name;
+                }List1.Add = List1[0];*/
 
 
 
-            for (var i = 0; i < items.Count; i++)
-            {
-                if (items[i].Value <= 0.25)
+                for (var i = 0; i < items.Count; i++)
                 {
-                    items[i].ValueImage = "value_0.gif";
+                    if (items[i].Value <= 0.25)
+                    {
+                        items[i].ValueImage = "value_0.gif";
+                    }
+                    else if (items[i].Value <= 0.75)
+                    {
+                        items[i].ValueImage = "value_0.5.gif";
+                    }
+                    else if (items[i].Value <= 1.25)
+                    {
+                        items[i].ValueImage = "value_1.gif";
+                    }
+                    else if (items[i].Value <= 1.75)
+                    {
+                        items[i].ValueImage = "value_1.5.gif";
+                    }
+                    else if (items[i].Value <= 2.25)
+                    {
+                        items[i].ValueImage = "value_2.gif";
+                    }
+                    else if (items[i].Value <= 2.75)
+                    {
+                        items[i].ValueImage = "value_2.5.gif";
+                    }
+                    else if (items[i].Value <= 3.25)
+                    {
+                        items[i].ValueImage = "value_3.gif";
+                    }
+                    else if (items[i].Value <= 3.75)
+                    {
+                        items[i].ValueImage = "value_3.5.gif";
+                    }
+                    else if (items[i].Value <= 4.25)
+                    {
+                        items[i].ValueImage = "value_4.gif";
+                    }
+                    else if (items[i].Value <= 4.75)
+                    {
+                        items[i].ValueImage = "value_4.5.gif";
+                    }
+                    else
+                    {
+                        items[i].ValueImage = "value_5.gif";
+                    }
+
                 }
-                else if (items[i].Value <= 0.75)
-                {
-                    items[i].ValueImage = "value_0.5.gif";
-                }
-                else if (items[i].Value <= 1.25)
-                {
-                    items[i].ValueImage = "value_1.gif";
-                }
-                else if (items[i].Value <= 1.75)
-                {
-                    items[i].ValueImage = "value_1.5.gif";
-                }
-                else if (items[i].Value <= 2.25)
-                {
-                    items[i].ValueImage = "value_2.gif";
-                }
-                else if (items[i].Value <= 2.75)
-                {
-                    items[i].ValueImage = "value_2.5.gif";
-                }
-                else if (items[i].Value <= 3.25)
-                {
-                    items[i].ValueImage = "value_3.gif";
-                }
-                else if (items[i].Value <= 3.75)
-                {
-                    items[i].ValueImage = "value_3.5.gif";
-                }
-                else if (items[i].Value <= 4.25)
-                {
-                    items[i].ValueImage = "value_4.gif";
-                }
-                else if (items[i].Value <= 4.75)
-                {
-                    items[i].ValueImage = "value_4.5.gif";
-                }
-                else
-                {
-                    items[i].ValueImage = "value_5.gif";
-                }
-                
+
+                RankListView.ItemsSource = items;
             }
-
-            RankListView.ItemsSource = items;
+            catch(Exception e) { await DisplayAlert("警告", e.ToString(), "OK"); }
+            {
+                DisplayAlert()
+            };
 
         }
 
