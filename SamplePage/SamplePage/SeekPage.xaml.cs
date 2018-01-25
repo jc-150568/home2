@@ -184,9 +184,7 @@ namespace SamplePage
                 RankListView.ItemsSource = items;
             }
             catch(Exception e) { await DisplayAlert("警告", e.ToString(), "OK"); }
-            {
-                DisplayAlert()
-            };
+           
 
         }
 
