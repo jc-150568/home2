@@ -349,6 +349,9 @@ namespace SamplePage
                 JValue titleValue = (JValue)jobj["title"];
                 string title = (string)titleValue.Value;
 
+                JValue reviewAverageValue = (JValue)jobj["reviewAverage"];
+                double reviewAverage = (double)reviewAverageValue.Value;
+
                 JValue titleKanaValue = (JValue)jobj["titleKana"];
                 string titleKana = (string)titleKanaValue.Value;
 
@@ -359,16 +362,65 @@ namespace SamplePage
                 string gazo = (string)gazoValue.Value;
 
                 ListTitle.Add(title);
+                ListReview.Add(reviewAverage);
 
             };
            
             for (var j = 0; j < 30; j++)
             {
-                items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
+                items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
+
+            }
+            for (var i = 0; i < items.Count; i++)
+            {
+                if (items[i].Value <= 0.25)
+                {
+                    items[i].ValueImage = "value_0.gif";
+                }
+                else if (items[i].Value <= 0.75)
+                {
+                    items[i].ValueImage = "value_0.5.gif";
+                }
+                else if (items[i].Value <= 1.25)
+                {
+                    items[i].ValueImage = "value_1.gif";
+                }
+                else if (items[i].Value <= 1.75)
+                {
+                    items[i].ValueImage = "value_1.5.gif";
+                }
+                else if (items[i].Value <= 2.25)
+                {
+                    items[i].ValueImage = "value_2.gif";
+                }
+                else if (items[i].Value <= 2.75)
+                {
+                    items[i].ValueImage = "value_2.5.gif";
+                }
+                else if (items[i].Value <= 3.25)
+                {
+                    items[i].ValueImage = "value_3.gif";
+                }
+                else if (items[i].Value <= 3.75)
+                {
+                    items[i].ValueImage = "value_3.5.gif";
+                }
+                else if (items[i].Value <= 4.25)
+                {
+                    items[i].ValueImage = "value_4.gif";
+                }
+                else if (items[i].Value <= 4.75)
+                {
+                    items[i].ValueImage = "value_4.5.gif";
+                }
+                else
+                {
+                    items[i].ValueImage = "value_5.gif";
+                }
 
             }
 
-           
+
             RankListView.ItemsSource = items;
 
 
@@ -384,7 +436,7 @@ namespace SamplePage
             //2秒処理を待つ
             await Task.Delay(2000);
             items.Clear();
-            await DisplayAlert("警告", "clear", "OK");
+            
             var query = UserModel.selectUser();
             var ListTitle = new List<String>();
             var ListReview = new List<double>();
@@ -399,7 +451,7 @@ namespace SamplePage
             {
                 await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
             }
-            await DisplayAlert("警告", "getapi", "OK");
+            
             /*
             //レスポンス(JSON)をstringに変換-------------->しなくていい
             Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
@@ -422,6 +474,9 @@ namespace SamplePage
                 JValue titleValue = (JValue)jobj["title"];
                 string title = (string)titleValue.Value;
 
+                JValue reviewAverageValue = (JValue)jobj["reviewAverage"];
+                double reviewAverage = (double)reviewAverageValue.Value;
+
                 JValue titleKanaValue = (JValue)jobj["titleKana"];
                 string titleKana = (string)titleKanaValue.Value;
 
@@ -432,12 +487,13 @@ namespace SamplePage
                 string gazo = (string)gazoValue.Value;
 
                 ListTitle.Add(title);
+                ListReview.Add(reviewAverage);
 
             };
-            await DisplayAlert("警告", "listadd", "OK");
+            
             for (var j = 0; j < 30; j++)
             {
-                items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
+                items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
 
             }
 
@@ -490,7 +546,6 @@ namespace SamplePage
 
             }
 
-            await DisplayAlert("警告", "itemsadd", "OK");
             RankListView.ItemsSource = items;
 
 
