@@ -489,7 +489,7 @@ namespace SamplePage
                 ListReview.Add(reviewAverage);
 
             };
-            
+            await DisplayAlert("dsf", "sdfsd", "sgfsd");
             for (var j = 0; j < 30; j++)
             {
                 items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
