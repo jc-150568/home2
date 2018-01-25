@@ -60,7 +60,7 @@ namespace SamplePage
             requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
 
             //HTTPアクセスメソッドを呼び出す
-            string APIdata = GetApiAsync(); //jsonをstringで受け取る
+            string APIdata = GetApiAsync().ToString(); //jsonをstringで受け取る
 
             //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
             if (APIdata is null)
