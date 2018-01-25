@@ -113,7 +113,7 @@ namespace SamplePage
 
                 for (var j = 0; j < ListTitle.Count; j++)
                 {
-                    items.Add(new Book2 { Name = ListTitle[j], Value = ListReview[j] });
+                    items.Add(new Book2 { Name ="きいうおぶお", Value = ListReview[j] });
 
                 }
 
@@ -290,110 +290,6 @@ namespace SamplePage
         {
             try
             {
-
-                /*if (this.picker3.SelectedIndex == 0)
-                {
-                    genreid = genreid + "001";
-                }
-
-                if (this.picker3.SelectedIndex == 1)
-                {
-                    genreid = genreid + "002";
-                }
-
-                if (this.picker3.SelectedIndex == 2)
-                {
-                    genreid = genreid + "003";
-                }
-
-                if (this.picker3.SelectedIndex == 3)
-                {
-                    genreid = genreid + "004";
-                }
-
-                if (this.picker3.SelectedIndex == 4)
-                {
-                    genreid = genreid + "005";
-                }
-
-                if (this.picker3.SelectedIndex == 5)
-                {
-                    genreid = genreid + "006";
-                }
-
-                if (this.picker3.SelectedIndex == 6)
-                {
-                    genreid = genreid + "007";
-                }
-
-                if (this.picker3.SelectedIndex == 7)
-                {
-                    genreid = genreid + "008";
-                }
-
-                if (this.picker3.SelectedIndex == 8)
-                {
-                    genreid = genreid + "009";
-                }
-
-                if (this.picker3.SelectedIndex == 9)
-                {
-                    genreid = genreid + "010";
-                }
-                if (this.picker3.SelectedIndex == 10)
-                {
-                    genreid = genreid + "011";
-                }
-
-                if (this.picker3.SelectedIndex == 11)
-                {
-                    genreid = genreid + "012";
-                }
-                
-                if (this.picker3.SelectedIndex == 12)
-                {
-                    genreid = genreid + "013";
-                }
-
-                if (this.picker3.SelectedIndex == 13)
-                {
-                    genreid = genreid + "014";
-                }
-
-                if (this.picker3.SelectedIndex == 14)
-                {
-                    genreid = genreid + "015";
-                }
-
-                if (this.picker3.SelectedIndex == 15)
-                {
-                    genreid = genreid + "016";
-                }
-
-                if (this.picker3.SelectedIndex == 16)
-                {
-                    genreid = genreid + "017";
-                }
-
-                if (this.picker3.SelectedIndex == 17)
-                {
-                    genreid = genreid + "018";
-                }
-
-                if (this.picker3.SelectedIndex == 18)
-                {
-                    genreid = genreid + "019";
-                }
-
-                if (this.picker3.SelectedIndex == 19)
-                {
-                    genreid = genreid + "020";
-                }
-
-                if (this.picker3.SelectedIndex == 20)
-                {
-                    genreid = genreid + "021";
-                }*/
                 if (picker3.SelectedIndex < 9)
                 {
                     genreid = genreid + "00" + (picker3.SelectedIndex + 1).ToString();
@@ -482,6 +378,34 @@ namespace SamplePage
             catch (Exception x) { await DisplayAlert("警告", x.ToString(), "OK"); }
         }
 
+
+        private async void OnRefreshing(object sender, EventArgs e)
+        {
+            //2秒処理を待つ
+            await Task.Delay(2000);
+            items.Clear();
+            var query = UserModel.selectUser();
+            var ListTitle = new List<String>();
+            var ListReview = new List<double>();
+            //*をリストにぶち込んで個数分addするのでもいいのでは
+            foreach (var user in query)
+            {
+                ListTitle.Add();
+            }
+            for (var j = 0; j < query.Count; j++)
+            {
+                items.Add(new Book { Name = ListTitle[j], /*Value = 2.5*/ });
+
+            }
+
+
+            RankListView.ItemsSource = items;
+
+
+            //リフレッシュを止める
+            this.RankListView.IsRefreshing = false;
+        }
+        
 
         //HTTPアクセスメソッド
         public static async Task<string> GetApiAsync()
