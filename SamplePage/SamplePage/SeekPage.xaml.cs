@@ -309,68 +309,74 @@ namespace SamplePage
         //--------------------------------Serchボタンイベントハンドラ-----------------------------------
         private async void Serch(object sender, EventArgs e)
         {
-            try
+            //2秒処理を待つ
+            await Task.Delay(2000);
+            items.Clear();
+            var query = UserModel.selectUser();
+            var ListTitle = new List<String>();
+            var ListReview = new List<double>();
+
+            requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
+
+            //HTTPアクセスメソッドを呼び出す
+            string APIdata = await GetApiAsync(); //jsonをstringで受け取る
+
+            //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
+            if (APIdata is null)
             {
-                var layout2 = new StackLayout { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand };
-                var scroll = new ScrollView { Orientation = ScrollOrientation.Vertical };
-                layout2.Children.Add(scroll);
-                var layout = new StackLayout { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand };
-                scroll.Content = layout;
-                requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
-
-                //HTTPアクセスメソッドを呼び出す
-                string APIdata = await GetApiAsync(); //jsonをstringで受け取る
-
-                //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
-                if (APIdata is null)
-                {
-                    await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
-                }
-
-                /*
-                //レスポンス(JSON)をstringに変換-------------->しなくていい
-                Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
-                StreamReader sr = new StreamReader(s);
-                string json = sr.ReadToEnd();
-                */
-                /*
-                //デシリアライズ------------------>しなくていい
-                var rakutenBooks = JsonConvert.DeserializeObject<RakutenBooks>(json.ToString());
-                */
-
-                //パースする *重要*   パースとは、文法に従って分析する、品詞を記述する、構文解析する、などの意味を持つ英単語。
-                var json = JObject.Parse(APIdata); //stringのAPIdataをJObjectにパース
-                var Items = JArray.Parse(json["Items"].ToString()); //Itemsは配列なのでJArrayにパース
-
-                //結果を出力
-                foreach (JObject jobj in Items)
-                {
-                    //↓のように取り出す
-                    JValue titleValue = (JValue)jobj["title"];
-                    string title = (string)titleValue.Value;
-
-                    JValue titleKanaValue = (JValue)jobj["titleKana"];
-                    string titleKana = (string)titleKanaValue.Value;
-
-                    JValue itemCaptionValue = (JValue)jobj["itemCaption"];
-                    string itemCaption = (string)itemCaptionValue.Value;
-
-                    JValue gazoValue = (JValue)jobj["largeImageUrl"];
-                    string gazo = (string)gazoValue.Value;
-
-                    //書き出し
-                    layout.Children.Add(new Label { Text = $"title: { title }" });
-                    layout.Children.Add(new Label { Text = $"titleKana: { titleKana }" });
-                    layout.Children.Add(new Label { Text = $"itemCaption: { itemCaption }" });
-                    layout.Children.Add(new Image { Source = gazo });
-                    String A = gazo;
-
-                };
-                
-                Content = layout2;
+                await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
             }
-            catch (Exception x) { await DisplayAlert("警告", x.ToString(), "OK"); }
+            
+            /*
+            //レスポンス(JSON)をstringに変換-------------->しなくていい
+            Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
+            StreamReader sr = new StreamReader(s);
+            string json = sr.ReadToEnd();
+            */
+            /*
+            //デシリアライズ------------------>しなくていい
+            var rakutenBooks = JsonConvert.DeserializeObject<RakutenBooks>(json.ToString());
+            */
+
+            //パースする *重要*   パースとは、文法に従って分析する、品詞を記述する、構文解析する、などの意味を持つ英単語。
+            var json = JObject.Parse(APIdata); //stringのAPIdataをJObjectにパース
+            var Items = JArray.Parse(json["Items"].ToString()); //Itemsは配列なのでJArrayにパース
+
+            //結果を出力
+            foreach (JObject jobj in Items)
+            {
+                //↓のように取り出す
+                JValue titleValue = (JValue)jobj["title"];
+                string title = (string)titleValue.Value;
+
+                JValue titleKanaValue = (JValue)jobj["titleKana"];
+                string titleKana = (string)titleKanaValue.Value;
+
+                JValue itemCaptionValue = (JValue)jobj["itemCaption"];
+                string itemCaption = (string)itemCaptionValue.Value;
+
+                JValue gazoValue = (JValue)jobj["largeImageUrl"];
+                string gazo = (string)gazoValue.Value;
+
+                ListTitle.Add(title);
+
+            };
+           
+            for (var j = 0; j < 30; j++)
+            {
+                items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
+
+            }
+
+           
+            RankListView.ItemsSource = items;
+
+
+            //リフレッシュを止める
+            this.RankListView.IsRefreshing = false;
         }
+           
+        
 
 
        private async void OnRefreshing(object sender, EventArgs e)
@@ -432,6 +438,55 @@ namespace SamplePage
             for (var j = 0; j < 30; j++)
             {
                 items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
+
+            }
+
+            for (var i = 0; i < items.Count; i++)
+            {
+                if (items[i].Value <= 0.25)
+                {
+                    items[i].ValueImage = "value_0.gif";
+                }
+                else if (items[i].Value <= 0.75)
+                {
+                    items[i].ValueImage = "value_0.5.gif";
+                }
+                else if (items[i].Value <= 1.25)
+                {
+                    items[i].ValueImage = "value_1.gif";
+                }
+                else if (items[i].Value <= 1.75)
+                {
+                    items[i].ValueImage = "value_1.5.gif";
+                }
+                else if (items[i].Value <= 2.25)
+                {
+                    items[i].ValueImage = "value_2.gif";
+                }
+                else if (items[i].Value <= 2.75)
+                {
+                    items[i].ValueImage = "value_2.5.gif";
+                }
+                else if (items[i].Value <= 3.25)
+                {
+                    items[i].ValueImage = "value_3.gif";
+                }
+                else if (items[i].Value <= 3.75)
+                {
+                    items[i].ValueImage = "value_3.5.gif";
+                }
+                else if (items[i].Value <= 4.25)
+                {
+                    items[i].ValueImage = "value_4.gif";
+                }
+                else if (items[i].Value <= 4.75)
+                {
+                    items[i].ValueImage = "value_4.5.gif";
+                }
+                else
+                {
+                    items[i].ValueImage = "value_5.gif";
+                }
 
             }
 
