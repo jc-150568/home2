@@ -437,7 +437,6 @@ namespace SamplePage
             await Task.Delay(2000);
             items.Clear();
             
-            var query = UserModel.selectUser();
             var ListTitle = new List<String>();
             var ListReview = new List<double>();
 
