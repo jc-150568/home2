@@ -54,7 +54,7 @@
                     />
             <ListView x:Name="RankListView" RowHeight="100"
                       IsPullToRefreshEnabled="True"
-                      Refreshing="OnRefreshing">
+                      <!--Refreshing="OnRefreshing"> -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
 

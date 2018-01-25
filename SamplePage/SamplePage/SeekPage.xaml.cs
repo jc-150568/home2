@@ -379,7 +379,7 @@ namespace SamplePage
         }
 
 
-        private async void OnRefreshing(object sender, EventArgs e)
+       /* private async void OnRefreshing(object sender, EventArgs e)
         {
             //2秒処理を待つ
             await Task.Delay(2000);
@@ -394,7 +394,7 @@ namespace SamplePage
             }
             for (var j = 0; j < query.Count; j++)
             {
-                items.Add(new Book { Name = ListTitle[j], /*Value = 2.5*/ });
+                items.Add(new Book { Name = ListTitle[j], Value = 2.5 });
 
             }
 
@@ -404,7 +404,7 @@ namespace SamplePage
 
             //リフレッシュを止める
             this.RankListView.IsRefreshing = false;
-        }
+        }*/
         
 
         //HTTPアクセスメソッド
