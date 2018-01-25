@@ -103,7 +103,7 @@ namespace SamplePage
 
                     DisplayAlert("aa", title, "asd");
 
-                    ListTitle.Add(title);
+                    ListTitle.Add(title.ToString());
                     ListReview.Add(reviewAverage);
 
                 };
@@ -111,7 +111,7 @@ namespace SamplePage
 
 
 
-                for (var j = 0; j < ListTitle.Count; j++)
+                for (var j = 0; j <30; j++)
                 {
                     items.Add(new Book2 { Name ="きいうおぶお", Value = ListReview[j] });
                     DisplayAlert("title",ListTitle[j],"ok");
