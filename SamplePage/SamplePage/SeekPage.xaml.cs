@@ -101,7 +101,7 @@ namespace SamplePage
                     JValue gazoValue = (JValue)jobj["largeImageUrl"];
                     string gazo = (string)gazoValue.Value;
 
-
+                    DisplayAlert("aa", title, "asd");
 
                     ListTitle.Add(title);
                     ListReview.Add(reviewAverage);
@@ -114,7 +114,7 @@ namespace SamplePage
                 for (var j = 0; j < ListTitle.Count; j++)
                 {
                     items.Add(new Book2 { Name ="きいうおぶお", Value = ListReview[j] });
-
+                    DisplayAlert("title",ListTitle[j],"ok");
                 }
 
                 /*for (var j = 1; j == query2.Count; j++)
