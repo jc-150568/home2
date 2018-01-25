@@ -44,13 +44,15 @@ namespace SamplePage
         static string requestUrl;
         static string genreid ="";
 
-        var ListTitle = new List<string>();
-        var ListReview = new List<string>();
-        public ObservableCollection<Book2> items = new ObservableCollection<Book>();
+       
+        public ObservableCollection<Book2> items = new ObservableCollection<Book2>();
 
         public SeekPage()
         {
             InitializeComponent();
+
+            var ListTitle = new List<string>();
+            var ListReview = new List<string>();
 
             //formatVersion=2にした
             url = "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&formatVersion=2&applicationId=1051637750796067320&sort=sales&hits=30";
