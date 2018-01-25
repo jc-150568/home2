@@ -378,6 +378,7 @@ namespace SamplePage
             //2秒処理を待つ
             await Task.Delay(2000);
             items.Clear();
+            await DisplayAlert("警告", "clear", "OK");
             var query = UserModel.selectUser();
             var ListTitle = new List<String>();
             var ListReview = new List<double>();
@@ -392,7 +393,7 @@ namespace SamplePage
             {
                 await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
             }
-
+            await DisplayAlert("警告", "getapi", "OK");
             /*
             //レスポンス(JSON)をstringに変換-------------->しなくていい
             Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
@@ -427,14 +428,14 @@ namespace SamplePage
                 ListTitle.Add(title);
 
             };
-            
+            await DisplayAlert("警告", "listadd", "OK");
             for (var j = 0; j < 30; j++)
             {
                 items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
 
             }
 
-
+            await DisplayAlert("警告", "itemsadd", "OK");
             RankListView.ItemsSource = items;
 
 
