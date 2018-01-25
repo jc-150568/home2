@@ -366,20 +366,14 @@ namespace SamplePage
                     String A = gazo;
 
                 };
-                layout.Children.Add(new Label { Text = "読み取り終了", TextColor = Color.Black });
-
-                layout.Children.Add(new Label { Text = "" });//改行
-
-                layout.Children.Add(new Label { Text = "JSON形式で書き出す", TextColor = Color.Red });
-                layout.Children.Add(new Label { Text = json.ToString() });
-
+                
                 Content = layout2;
             }
             catch (Exception x) { await DisplayAlert("警告", x.ToString(), "OK"); }
         }
 
 
-       /* private async void OnRefreshing(object sender, EventArgs e)
+       private async void OnRefreshing(object sender, EventArgs e)
         {
             //2秒処理を待つ
             await Task.Delay(2000);
@@ -387,14 +381,56 @@ namespace SamplePage
             var query = UserModel.selectUser();
             var ListTitle = new List<String>();
             var ListReview = new List<double>();
-            //*をリストにぶち込んで個数分addするのでもいいのでは
-            foreach (var user in query)
+
+            requestUrl = url + "&booksGenreId=001" + genreid; //URLにISBNコードを挿入
+
+            //HTTPアクセスメソッドを呼び出す
+            string APIdata = await GetApiAsync(); //jsonをstringで受け取る
+
+            //HTTPアクセス失敗処理(404エラーとか名前解決失敗とかタイムアウトとか)
+            if (APIdata is null)
             {
-                ListTitle.Add();
+                await DisplayAlert("接続エラー", "接続に失敗しました", "OK");
             }
-            for (var j = 0; j < query.Count; j++)
+
+            /*
+            //レスポンス(JSON)をstringに変換-------------->しなくていい
+            Stream s = GetMemoryStream(APIdata); //GetMemoryStreamメソッド呼び出し
+            StreamReader sr = new StreamReader(s);
+            string json = sr.ReadToEnd();
+            */
+            /*
+            //デシリアライズ------------------>しなくていい
+            var rakutenBooks = JsonConvert.DeserializeObject<RakutenBooks>(json.ToString());
+            */
+
+            //パースする *重要*   パースとは、文法に従って分析する、品詞を記述する、構文解析する、などの意味を持つ英単語。
+            var json = JObject.Parse(APIdata); //stringのAPIdataをJObjectにパース
+            var Items = JArray.Parse(json["Items"].ToString()); //Itemsは配列なのでJArrayにパース
+
+            //結果を出力
+            foreach (JObject jobj in Items)
             {
-                items.Add(new Book { Name = ListTitle[j], Value = 2.5 });
+                //↓のように取り出す
+                JValue titleValue = (JValue)jobj["title"];
+                string title = (string)titleValue.Value;
+
+                JValue titleKanaValue = (JValue)jobj["titleKana"];
+                string titleKana = (string)titleKanaValue.Value;
+
+                JValue itemCaptionValue = (JValue)jobj["itemCaption"];
+                string itemCaption = (string)itemCaptionValue.Value;
+
+                JValue gazoValue = (JValue)jobj["largeImageUrl"];
+                string gazo = (string)gazoValue.Value;
+
+                ListTitle.Add(title);
+
+            };
+            
+            for (var j = 0; j < 30; j++)
+            {
+                items.Add(new Book2 { Name = ListTitle[j], Value = 2.5 });
 
             }
 
@@ -404,7 +440,7 @@ namespace SamplePage
 
             //リフレッシュを止める
             this.RankListView.IsRefreshing = false;
-        }*/
+        }
         
 
         //HTTPアクセスメソッド
