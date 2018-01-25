@@ -53,9 +53,7 @@
                     Clicked="Serch"
                     />
             <ListView x:Name="RankListView" RowHeight="100"
-                   IsPullToRefreshEnabled="True"
-                   Refreshing="OnRefreshing" 
-                  ItemTapped="OnItemSelected">
+                   IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
